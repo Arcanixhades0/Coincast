@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gilroy Bold font-face (provide files in public/fonts) */
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Bold.woff2") format("woff2"),
+       url("/fonts/Gilroy-Bold.woff") format("woff");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Coincast Design System - Minimal Black & White Glassy Theme 
+Monochromatic with luminous glass effects. All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core black and white palette */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    /* Glass morphism surfaces - subtle grays */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
+    --glass: 0 0% 8%;
+    --glass-border: 0 0% 15%;
+
+    /* Navigation elements */
+    --nav-background: 0 0% 4%;
+    --nav-pill: 0 0% 8%;
+    --nav-active: 0 0% 100%;
+
+    /* Primary white accent */
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --primary-glow: 0 0% 90%;
+
+    /* Secondary grays */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 0 0% 20%;
+
+    /* Accent whites and grays */
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
+    --accent-glow: 0 0% 85%;
+
+    /* Muted grays */
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    /* Interactive states */
+    --hover: 0 0% 12%;
+    --hover-accent: 0 0% 95%;
+
+    /* Destructive/warning - kept minimal */
+    --destructive: 0 0% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 0 0% 15%;
+    --input: 0 0% 8%;
+    --ring: 0 0% 100%;
+
+    /* Gradients - black to white variations */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 80%));
+    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 40%));
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 3%), hsl(0 0% 8%));
+
+    /* Glass effects with white luminosity */
+    --glass-bg: hsla(0, 0%, 8%, 0.7);
+    --glass-border-color: hsla(0, 0%, 20%, 0.5);
+    --glass-nav: hsla(0, 0%, 6%, 0.8);
+    --glow-shadow: 0 0 20px hsla(0, 0%, 100%, 0.1);
+    --subtle-glow: 0 0 30px hsla(0, 0%, 100%, 0.05);
+    --white-glow: 0 0 25px hsla(0, 0%, 100%, 0.3);
+
+    /* Radius */
+    --radius: 0.75rem;
+    --radius-pill: 9999px;
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    background: hsl(var(--background));
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsla(0, 0%, 100%, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsla(0, 0%, 100%, 0.01) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsla(0, 0%, 100%, 0.015) 0%, transparent 50%);
+  }
+
+  /* Glass morphism utility classes */
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-subtle {
+    background: hsla(0, 0%, 8%, 0.4);
+    border: 1px solid hsla(0, 0%, 20%, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .glass-nav {
+    background: var(--glass-nav);
+    border: 1px solid hsla(0, 0%, 20%, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glow {
+    box-shadow: var(--glow-shadow);
+  }
+
+  .glow-subtle {
+    box-shadow: var(--subtle-glow);
+  }
+
+  .glow-white {
+    box-shadow: var(--white-glow);
+  }
+
+  /* Navigation pill styles */
+  .nav-pill {
+    background: hsla(0, 0%, 6%, 0.8);
+    border: 1px solid hsla(0, 0%, 20%, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: var(--transition-smooth);
+  }
+
+  .nav-pill:hover {
+    background: hsla(0, 0%, 10%, 0.9);
+    box-shadow: 0 0 20px hsla(0, 0%, 100%, 0.1);
+  }
+
+  .nav-pill.active {
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 0 25px hsla(0, 0%, 100%, 0.4);
+  }
+
+  /* Category card hover effects */
+  .category-card {
+    transition: var(--transition-smooth);
+  }
+
+  .category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px hsla(0, 0%, 100%, 0.1);
+  }
+
+  /* Coincast logo styling */
+  .coincast-logo {
+    /* Match homepage hero font (Inter Bold) */
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-weight: 700;
+    font-size: 34px; /* matches MetallicCircle size */
+    line-height: 1;
+    background: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 75%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px hsla(0, 0%, 100%, 0.25);
+  }
+
+  /* Dithered Pattern Background */
+  .bg-dither-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsla(0, 0%, 100%, 0.4) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, hsla(0, 0%, 100%, 0.3) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, hsla(0, 0%, 100%, 0.25) 1.5px, transparent 1.5px),
+      linear-gradient(45deg, hsla(0, 0%, 100%, 0.1) 25%, transparent 25%),
+      linear-gradient(-45deg, hsla(0, 0%, 100%, 0.1) 25%, transparent 25%),
+      linear-gradient(0deg, hsla(0, 0%, 100%, 0.05), transparent);
+    background-size: 30px 30px, 45px 45px, 60px 60px, 15px 15px, 15px 15px, 100% 100%;
+    background-position: 0 0, 15px 15px, 30px 30px, 0 0, 8px 8px, 0 0;
+  }
+
+  @keyframes dither-flow {
+    0% { 
+      background-position: 0 0, 15px 15px, 30px 30px, 0 0, 8px 8px, 0 0;
+    }
+    50% { 
+      background-position: 15px 15px, 30px 30px, 45px 45px, 8px 8px, 16px 16px, 0 0;
+    }
+    100% { 
+      background-position: 30px 30px, 45px 45px, 60px 60px, 15px 15px, 24px 24px, 0 0;
+    }
+  }
+
+  .animate-dither-flow {
+    animation: dither-flow 8s ease-in-out infinite;
+  }
+
+  /* Additional utility classes */
+  .rounded-pill {
+    border-radius: var(--radius-pill);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
